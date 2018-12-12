@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Complementary colors</string>
+    <string name="red">R</string>
+    <string name="green">G</string>
+    <string name="blue">B</string>
+    <string name="color_desc">Chosen color</string>
+    <string name="comp_desc">Complementary color</string>
+    <string name="action_random">Randomize</string>
+    <string name="r_entry">Red value</string>
+    <string name="g_entry">Green value</string>
+    <string name="b_entry">Blue value</string>
+</resources>

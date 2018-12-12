@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_r">0</integer>
+    <integer name="default_g">0</integer>
+    <integer name="default_b">0</integer>
+</resources>
