@@ -1,0 +1,44 @@
+Har ej valt att distrubuera genom Google Play.
+Källa: https://developer.android.com/studio/publish/
+1. Insamla material och resurser
+    1. Skapa kryptografiska nycklar / certifikat för signering av appen. Krävs för att kunna installera den på en enhet.
+        1. Välj Build > Generate Signed APK
+        2. Skapa Key Store där nycklarna lagras lokalt genom att fylla i Path och Lösenord till den
+        3. Skapa en “App Signing Key” (eller “Upload Key” om man använder Google Play App Signing) genom att fylla i Alias (valfritt namn på nyckeln), lösenord och antal år nyckeln ska vara giltig.
+        4. Fyll i information om dig själv som sparas tillsamans med nykeln i Certifiakatet som inkluderas i varje APK som signeras med nyckeln.
+        5. Tryck OK.
+    2. Skapa en Launcher Icon till appen. Använd med fördel Adaptive Ikons som är anpassade för att användas för olika enhetsmodeller och skärmupplösningar. Görs lättast med Image Asset Studio som nås genom Android Studio.
+        1. Högerklicka på Res mappen i projekt-fönstret (Android View), välj New > Image Asset
+        2. Välj som Launcher Icons (Adaptive & Legacy) som Icon Type
+        3. Skapa en Foreground Layer exempelvis genom att ladda in en bildfil
+        4. Skapa en Background Layer på samma sätt
+        5. I Legacy tabben; se till att legacy, round, and Google Play Store ikoner genereras för enheter med äldre OS
+        6. Välj Next och sen Finish
+    3. Skapa eventuellt en UELA samt marknadföringsmaterial (om ex. publicerar på Google Play Store)
+2. Konfigurera appen för Release
+    1. Välj ett lämpligt Package Name. 
+        1. Skrivs i appens Manifest File under <manifest>
+        2. Representerar appens Application ID och måste vara unikt vid publicering på ex. Google Play. Använd därför eget Intenet domännamn för att undvika konflikt (ex. com.example.myapp).
+    2. Stäng av Logging och Debugging
+        1. Ta bort anrop till Log funktionen i källfilerna samt anrop till Debug klassens metoder.
+        2. Ta bort android:debuggable i appens Manifest fil eller sätt till false.
+        3. Ta bort eventuella log- och statiska test-filer.
+    3. Rensa i projektmapparna
+        1. jni/ mappen ska endast innehålla källfiler associerade med Android NDK (c/c++ filer)
+        2. lib/ mappen ska endast innehålla använda Library files
+        3. src/ mappen ska endast innehålla appens källfiler (.java, .aidl)
+        4. ta bort alla oanvända filer i exempelvis res/ och assets/ mapparna
+    4. Kontrollera och uppdatera Manifest och Gradle build filerna
+        1. Specificera endast de Permissions som behövs (<uses-permission> i manifest filen)
+        2. Specificera värden för attributen android:icon och android:label (under <application> i manifest filen)
+        3. Specificera versionCode (internt versionsnummer skriven som en positiv integer) och versionName (syns av användaren och kan skrivas som en valfri sträng). Görs i build.gradle filen.
+        4. Specifiera API kraven med attributen minSdkVersion (minsta versionen av Android platformen som appen kan köras på), targetSdkVersion (API versionen som appen är designad för). Görs i build.gradle filen.
+    5. Förbättra kompatibiliteten
+        1. Stöd olika skärmkonfigarationer (har Flexible layouts & landscape variation)
+        2. Stöd Android Tabets (samma som ovan)
+        3. Stöd äldre Android versioner (använder ett appCompat tema och aktivetetklass)
+    6. Bygg applikationen för Release (skapa signerat APK)
+        1. Välj Build > Generate Signed Bundle / APK för att öppna Generate Signed Bundle or APK fönstret
+        2. Välj APK. Välj Next
+        3. Skriv sökväg till Keystore, Key alias och skriv in deras lösenorden för bägge. Välj Next
+        4. Skriv in Destination Folder och välj en Release Build Variant. Välj Finish
