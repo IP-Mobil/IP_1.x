@@ -1,4 +1,4 @@
-package com.example.mattiashellman.comp_colors;
+package se.mattiashellman.complementarycolors;
 
 import org.junit.Test;
 
