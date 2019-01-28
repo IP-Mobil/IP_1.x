@@ -1,4 +1,4 @@
-package com.example.mattiashellman.comp_colors;
+package se.mattiashellman.complementarycolors;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.mattiashellman.comp_colors", appContext.getPackageName());
+        assertEquals("se.mattiashellman.complementarycolors", appContext.getPackageName());
     }
 }
